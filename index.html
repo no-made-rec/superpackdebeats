@@ -1,12 +1,124 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-  <title>Teste</title>
+<meta charset="UTF-8">
+<title>Superpack de Beats</title>
+
+<style>
+body {
+  background: #0a0a0a;
+  color: white;
+  font-family: Arial;
+  margin: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 32px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 30px;
+}
+
+.cta {
+  display: block;
+  text-align: center;
+  background: #65c1fb;
+  color: black;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 20px 0;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.beat {
+  background: #141414;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #aaa;
+}
+
+audio {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.price {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.old {
+  text-decoration: line-through;
+  color: #777;
+}
+
+.new {
+  font-size: 28px;
+  color: #65c1fb;
+}
+</style>
 </head>
+
 <body>
 
-<h1>Meu site de beats</h1>
-<p>Tá funcionando 🔥</p>
+<div class="container">
+
+<h1>🔥 Superpack de Beats</h1>
+<p class="subtitle">36 beats originais • Prontos para gravação</p>
+
+
+
+<div class="price">
+  <div class="old">De R$ 189,90</div>
+  <div class="new">Por R$ 85</div>
+</div>
+
+<!-- BEAT -->
+<div class="beat">
+  <strong>Teste 01</strong>
+  <div class="info">
+    <span>BPM: 140</span>
+    <span>Key: F#m</span>
+  </div>
+  <audio controls>
+    <source src="LINK_DO_AUDIO.mp3">
+  </audio>
+</div>
+
+<div class="beat">
+  <strong>Teste 02</strong>
+  <div class="info">
+    <span>BPM: 160</span>
+    <span>Key: Fm</span>
+  </div>
+  <audio controls>
+    <source src="LINK_DO_AUDIO.mp3">
+  </audio>
+</div>
+
+<!-- DUPLICA ISSO PRA CADA BEAT -->
+
+<a class="cta" href="SEU_LINK_DE_COMPRA">GARANTIR PACK</a>
+
+</div>
 
 </body>
 </html>
