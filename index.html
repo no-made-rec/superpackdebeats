@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SUPERPACK DE BEATS</title>
+<title>SUPERPACK DE BEATS | FEELADE</title>
 <script src="https://unpkg.com/wavesurfer.js"></script>
 
 <style>
@@ -15,7 +15,7 @@ body {
   margin: 0;
   background: radial-gradient(circle at top, #111, #000);
   color: white;
-  font-family: -apple-system, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 .container {
@@ -29,14 +29,16 @@ body {
 .logo {
   display: block;
   margin: 20px auto;
-  height: 90px;
-  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+  height: 80px;
+  filter: drop-shadow(0 5px 15px rgba(101,193,251,0.3));
 }
 
 /* HEADER */
 h1 {
   text-align: center;
   font-size: 26px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .subtitle {
@@ -49,11 +51,11 @@ h1 {
 /* CAPA */
 .cover {
   width: 100%;
-  max-height: 180px;
+  max-height: 220px;
   object-fit: cover;
-  object-position: center;
   border-radius: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 /* PREÇO */
@@ -65,10 +67,11 @@ h1 {
 .old {
   text-decoration: line-through;
   color: #666;
+  font-size: 14px;
 }
 
 .new {
-  font-size: 30px;
+  font-size: 36px;
   color: #65c1fb;
   font-weight: bold;
 }
@@ -78,37 +81,40 @@ h1 {
   display: block;
   text-align: center;
   background: linear-gradient(135deg, #65c1fb, #4ea8de);
-  color: black;
-  padding: 16px;
+  color: #000;
+  padding: 18px;
   border-radius: 14px;
   margin: 20px 0;
   text-decoration: none;
-  font-weight: bold;
-  transition: all 0.2s ease;
+  font-weight: 800;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
 }
 
 .cta:hover {
   background: #ffd84d;
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
   
-/* BEAT */
+/* LISTA DE BEATS */
 .beat {
-  background: #111;
+  background: rgba(255,255,255,0.03);
   padding: 16px;
   border-radius: 14px;
   margin-bottom: 15px;
   border: 1px solid rgba(255,255,255,0.05);
-  transition: 0.2s;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 .beat:hover {
-  transform: translateY(-3px);
+  background: rgba(255,255,255,0.06);
 }
 
 .beat.active {
   border: 1px solid #65c1fb;
-  box-shadow: 0 0 20px rgba(101,193,251,0.4);
+  background: rgba(101,193,251,0.05);
+  box-shadow: 0 0 20px rgba(101,193,251,0.2);
 }
 
 .top {
@@ -120,88 +126,85 @@ h1 {
 .play-btn {
   background: #65c1fb;
   border: none;
-  border-radius: 8px;
-  padding: 6px 10px;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  font-weight: bold;
+  font-size: 14px;
+  transition: 0.2s;
 }
 
 .play-btn:hover {
   background: #ffd84d;
+  transform: scale(1.1);
 }
 
 .info {
   display: flex;
-  justify-content: space-between;
-  color: #aaa;
-  font-size: 13px;
-  margin-top: 5px;
+  gap: 15px;
+  color: #888;
+  font-size: 12px;
+  margin-top: 4px;
+  font-weight: bold;
 }
 
 .waveform {
-  margin-top: 10px;
-  position: relative;
-  z-index: 1;
+  margin-top: 12px;
 }
 
 /* BLOCO FINAL */
 .locked {
   text-align: center;
-  margin: 30px 0;
-  padding: 20px;
+  margin: 40px 0;
+  padding: 30px;
   background: #111;
-  border-radius: 14px;
+  border: 1px dashed #333;
+  border-radius: 20px;
 }
 
-/* FOOTER */
 .footer {
   text-align: center;
-  color: #777;
+  color: #555;
   font-size: 12px;
-  margin: 40px 0 80px;
+  margin: 50px 0 100px;
 }
 
-/* BOTÃO FIXO PROFISSIONAL */
+/* BOTÃO FIXO COM PULSO */
 .fixed-cta {
   position: fixed;
-  bottom: 15px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
-  max-width: 500px;
+  max-width: 450px;
   background: linear-gradient(135deg, #65c1fb, #4ea8de);
   text-align: center;
   padding: 16px;
-  font-weight: bold;
-  color: black;
+  font-weight: 900;
+  color: #000;
   text-decoration: none;
-  border-radius: 14px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
   z-index: 9999;
-  animation: slideUp 0.6s ease;
+  animation: slideUp 0.6s ease, pulse 2s infinite;
 }
 
-.fixed-cta:hover {
-  background: #ffd84d;
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(101, 193, 251, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(101, 193, 251, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(101, 193, 251, 0); }
 }
 
-/* ANIMAÇÃO */
 @keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translate(-50%, 40px);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
+  from { opacity: 0; transform: translate(-50%, 40px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
 }
 
-/* RESPONSIVO */
 @media (min-width: 768px) {
-  h1 {
-    font-size: 32px;
-  }
+  h1 { font-size: 32px; }
 }
 </style>
 </head>
@@ -210,66 +213,74 @@ h1 {
 
 <div class="container">
 
-<!-- <h1>🔥 SUPERPACK DE BEATS</h1> -->
- 
-<img src="img/logo.png" class="logo">
+  <img src="img/logo.png" class="logo" alt="Feelade Logo">
 
-<img src="img/capa.jpg" class="cover">
+  <img src="img/capa.jpg" class="cover">
 
-<p class="subtitle">36 beats exclusivos • Acesso imediato</p>  
+  <h1>PACK DE BEATS EXCLUSIVOS</h1>
+  <p class="subtitle">36 Instrumentais Profissionais • Licença Ilimitada</p>  
   
-<a class="cta" href="https://mpago.li/2k8gYXw" target="_blank">
-LIBERAR OS 36 BEATS AGORA
-</a>
-
-<div class="price">
-  <div class="old">De R$ 189,90</div>
-  <div class="new">Por apenas R$ 85</div>
-</div>
-
-<div id="beats"></div>
-
-<div class="locked">
-  <h2>🔒 Desbloqueie o Pack Completo</h2>
-  <p>+26 beats exclusivos • Qualidade profissional</p>
+  <div class="price">
+    <div class="old">De R$ 189,90</div>
+    <div class="new">R$ 85</div>
+  </div>
 
   <a class="cta" href="https://mpago.li/2k8gYXw" target="_blank">
-  ACESSAR AGORA
+    QUERO O PACK COMPLETO AGORA
   </a>
-</div>
 
-<div class="footer">
-  <p>© 2026 Nômade Record's. Todos os direitos reservados.</p>
-</div>
+  <div id="beats"></div>
+
+  <div class="locked">
+    <h2>🔒 Mais 26 Beats no Pack</h2>
+    <p>Adquira agora e desbloqueie o acesso imediato a todos os arquivos em WAV e STEMS.</p>
+
+    <a class="cta" href="https://mpago.li/2k8gYXw" target="_blank">
+      LIBERAR TUDO
+    </a>
+  </div>
+
+  <div class="footer">
+    <p>© 2026 Nômade Record's & Feelade Studio.</p>
+  </div>
 
 </div>
 
 <a class="fixed-cta" href="https://mpago.li/2k8gYXw" target="_blank">
-LIBERAR PACK POR R$ 85
+  APROVEITAR OFERTA - R$ 85
 </a>
 
 <script>
+// 1. LISTA ORGANIZADA (Adicione o BPM e KEY reais aqui)
 const beatList = [
-"what","dope","groupies","delivery","damn",
-"shining","explosion","caveman","burning-coffin","always"
+  { name: "what", bpm: "140", key: "Am" },
+  { name: "dope", bpm: "132", key: "C#m" },
+  { name: "groupies", bpm: "95", key: "F" },
+  { name: "delivery", bpm: "145", key: "Gm" },
+  { name: "damn", bpm: "128", key: "Bm" },
+  { name: "shining", bpm: "100", key: "D#" },
+  { name: "explosion", bpm: "150", key: "Em" },
+  { name: "caveman", bpm: "90", key: "C" },
+  { name: "burning-coffin", bpm: "138", key: "G#m" },
+  { name: "always", bpm: "120", key: "A" }
 ];
 
 let players = [];
 let current = null;
-
 const container = document.getElementById("beats");
 
-beatList.forEach((name, i) => {
+// 2. GERAR O HTML AUTOMATICAMENTE
+beatList.forEach((beat, i) => {
   container.innerHTML += `
-    <div class="beat" onclick="playBeat(${i})">
+    <div class="beat" id="beat-row-${i}" onclick="playBeat(${i})">
       <div class="top">
-        <strong>${name.toUpperCase()}</strong>
-        <button class="play-btn">▶</button>
+        <strong>${beat.name.toUpperCase()}</strong>
+        <button class="play-btn" id="btn-${i}">▶</button>
       </div>
 
       <div class="info">
-        <span>BPM: ???</span>
-        <span>Key: ???</span>
+        <span><small>BPM</small> ${beat.bpm}</span>
+        <span><small>TOM</small> ${beat.key}</span>
       </div>
 
       <div id="waveform-${i}" class="waveform"></div>
@@ -277,32 +288,52 @@ beatList.forEach((name, i) => {
   `;
 });
 
+// 3. CONFIGURAR PLAYER (COM BARRINHAS ESTILO PROFISSIONAL)
 function createPlayer(index, url) {
   const wave = WaveSurfer.create({
     container: '#waveform-' + index,
-    waveColor: '#555',
+    waveColor: '#444',
     progressColor: '#65c1fb',
-    height: 60
+    height: 45,
+    barWidth: 2,
+    barGap: 3,
+    barRadius: 3,
+    cursorWidth: 0
   });
 
   wave.load(url);
   players[index] = wave;
 }
 
+// 4. LÓGICA DE PLAY/PAUSE E INTERAÇÃO
 function playBeat(index) {
+  const btn = document.getElementById(`btn-${index}`);
+  const row = document.getElementById(`beat-row-${index}`);
+
+  // Se clicar em um beat diferente, para o que estava tocando
   if (current !== null && current !== index) {
     players[current].pause();
-    document.querySelectorAll('.beat')[current].classList.remove('active');
+    document.getElementById(`beat-row-${current}`).classList.remove('active');
+    document.getElementById(`btn-${current}`).innerText = "▶";
   }
 
+  // Alterna Play/Pause
   players[index].playPause();
   current = index;
 
-  document.querySelectorAll('.beat')[index].classList.add('active');
+  // Atualiza visual
+  if (players[index].isPlaying()) {
+    btn.innerText = "⏸";
+    row.classList.add('active');
+  } else {
+    btn.innerText = "▶";
+    row.classList.remove('active');
+  }
 }
 
-beatList.forEach((name, i) => {
-  createPlayer(i, "audio/" + name + ".mp3");
+// Inicia o carregamento dos arquivos
+beatList.forEach((beat, i) => {
+  createPlayer(i, "audio/" + beat.name + ".mp3");
 });
 </script>
 
