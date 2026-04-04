@@ -48,25 +48,18 @@ h1 {
   font-size: 14px;
 }
 
+/* CAPA */
 .cover {
   width: 100%;
-  max-height: 220px;
+  max-height: 280px;
   object-fit: cover;
-  border-radius: 16px;
+  object-position: center;
+  border-radius: 24px;
   margin-bottom: 25px;
-  
-  /* PROFUNDIDADE 3D + BRILHO AZUL */
-  /* 1ª sombra: A preta, deslocada para baixo (profundidade) */
-  /* 2ª sombra: A azul, bem espalhada e centralizada (brilho/glow) */
-  box-shadow: 
-    0 15px 35px rgba(0,0,0,0.8), 
-    0 0 20px rgba(101,193,251,0.2);
-
-  /* Remova o filter: drop-shadow se ele ainda estiver lá */
-  filter: none; 
+  box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 25px rgba(101,193,251,0.15);
 }
 
-/* PREÇO ATUALIZADO */
+/* PREÇO */
 .price {
   text-align: center;
   margin-bottom: 35px;
@@ -76,7 +69,7 @@ h1 {
 
 .old {
   text-decoration: line-through;
-  color: #ff4d4d; /* VERMELHO VIVO */
+  color: #ff4d4d;
   font-size: 20px;
   font-weight: bold;
   opacity: 0.8;
@@ -84,7 +77,7 @@ h1 {
 
 .new {
   font-size: 36px;
-  color: #2ecc71; /* VERDE POSITIVO */
+  color: #2ecc71;
   font-weight: 900;
   margin-top: 5px;
 }
@@ -96,7 +89,7 @@ h1 {
   background: #65c1fb;
   color: #000;
   padding: 18px;
-  border-radius: 14px;
+  border-radius: 20px;
   margin: 20px 0;
   text-decoration: none;
   font-weight: 800;
@@ -112,8 +105,8 @@ h1 {
 /* LISTA DE BEATS */
 .beat {
   background: rgba(255,255,255,0.03);
-  padding: 16px;
-  border-radius: 14px;
+  padding: 20px;
+  border-radius: 24px;
   margin-bottom: 15px;
   border: 1px solid rgba(255,255,255,0.05);
   transition: 0.3s;
@@ -140,8 +133,8 @@ h1 {
   background: #65c1fb;
   border: none;
   border-radius: 50%;
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -150,22 +143,24 @@ h1 {
   transition: 0.2s;
 }
 
-.play-btn:hover {
-  background: #fff;
-  transform: scale(1.1);
-}
-
 .info {
   display: flex;
-  gap: 15px;
+  justify-content: space-between; /* Espaça BPM/Key do Tempo */
+  align-items: center;
   color: #888;
   font-size: 12px;
-  margin-top: 4px;
+  margin-top: 8px;
   font-weight: bold;
 }
 
+.time-display {
+  color: #65c1fb; /* Azul para destacar o tempo */
+  font-family: monospace; /* Estilo digital */
+  font-size: 13px;
+}
+
 .waveform {
-  margin-top: 12px;
+  margin-top: 15px;
 }
 
 /* BLOCO FINAL */
@@ -175,7 +170,7 @@ h1 {
   padding: 30px;
   background: #111;
   border: 1px dashed #333;
-  border-radius: 20px;
+  border-radius: 28px;
 }
 
 /* FOOTER */
@@ -186,38 +181,35 @@ h1 {
   margin: 50px 0 100px;
 }
 
-/* BOTÃO FIXO (VERDE #2ecc71) */
+/* BOTÃO FIXO */
 .fixed-cta {
   position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 90%;
+  width: 92%;
   max-width: 450px;
   background: #2ecc71; 
   text-align: center;
-  padding: 16px;
+  padding: 18px;
   font-weight: 900;
   color: #000;
   text-decoration: none;
-  border-radius: 16px;
+  border-radius: 22px;
   box-shadow: 0 10px 40px rgba(0,0,0,0.8);
   z-index: 9999;
-  /* Adicionei 'transition' para o zoom ser suave */
   transition: all 0.3s ease; 
   animation: slideUp 0.6s ease, pulse 2s infinite;
 }
 
-/* EFEITO DE HOVER NO BOTÃO FIXO */
 .fixed-cta:hover {
-  background: #fff; /* Muda para branco no hover, igual aos outros */
-  transform: translateX(-50%) scale(1.05); /* Mantém o alinhamento e dá o zoom */
-  box-shadow: 0 15px 50px rgba(46, 204, 113, 0.4);
+  background: #fff;
+  transform: translateX(-50%) scale(1.05);
 }
 
 @keyframes pulse {
   0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
-  70% { box-shadow: 0 0 0 15px rgba(46, 204, 113, 0); }
+  70% { box-shadow: 0 0 0 20px rgba(46, 204, 113, 0); }
   100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
 }
 
@@ -225,19 +217,13 @@ h1 {
   from { opacity: 0; transform: translate(-50%, 40px); }
   to { opacity: 1; transform: translate(-50%, 0); }
 }
-
-@media (min-width: 768px) {
-  h1 { font-size: 32px; }
-}
 </style>
 </head>
 
 <body>
 
 <div class="container">
-
   <img src="img/logo.png" class="logo" alt="Nômade Record's">
-
   <img src="img/capa.jpg" class="cover">
 
   <h1>PACK DE BEATS PREMIUM</h1>
@@ -257,25 +243,19 @@ h1 {
   <div class="locked">
     <h2>🔒 Mais 26 Beats no Pack</h2>
     <p>Adquira agora e receba acesso imediato aos arquivos em alta qualidade (WAV)</p>
-
-    <a class="cta" href="https://mpago.li/2k8gYXw" target="_blank">
-      LIBERAR TUDO
-    </a>
+    <a class="cta" href="https://mpago.li/2k8gYXw" target="_blank">LIBERAR TUDO</a>
   </div>
 
-<div class="footer">
-  <p style="margin-bottom: 20px; color: #999;">
-    ⚠️ Licença de uso não-exclusiva (Lease) ⚠️<br> 
-    Para adquirir exclusividade de algum beat, entre em contato
-  </p>
-  <p>© 2026 Nômade Record's. Todos os direitos reservados.</p>
-</div>
-  
+  <div class="footer">
+    <p style="margin-bottom: 20px; color: #999;">
+      ⚠️ Licença de uso não-exclusiva (Lease) ⚠️<br> 
+      Para adquirir exclusividade de algum beat, entre em contato
+    </p>
+    <p>© 2026 Nômade Record's. Todos os direitos reservados.</p>
+  </div>
 </div>
 
-<a class="fixed-cta" href="https://mpago.li/2k8gYXw" target="_blank">
-  APROVEITAR OFERTA - R$ 85
-</a>
+<a class="fixed-cta" href="https://mpago.li/2k8gYXw" target="_blank">APROVEITAR OFERTA - R$ 85</a>
 
 <script>
 const beatList = [
@@ -302,14 +282,22 @@ beatList.forEach((beat, i) => {
         <strong>${beat.name.toUpperCase()}</strong>
         <button class="play-btn" id="btn-${i}">▶</button>
       </div>
-      <div class="info">
-        <span>BPM ${beat.bpm}</span>
-        <span>TOM ${beat.key}</span>
-      </div>
       <div id="waveform-${i}" class="waveform"></div>
+      <div class="info">
+        <div>
+           <span>BPM ${beat.bpm}</span> | <span>TOM ${beat.key}</span>
+        </div>
+        <span class="time-display" id="time-${i}">00:00 / 00:00</span>
+      </div>
     </div>
   `;
 });
+
+function formatTime(seconds) {
+  const min = Math.floor(seconds / 60);
+  const sec = Math.floor(seconds % 60);
+  return min.toString().padStart(2, '0') + ':' + sec.toString().padStart(2, '0');
+}
 
 function createPlayer(index, url) {
   const wave = WaveSurfer.create({
@@ -322,7 +310,28 @@ function createPlayer(index, url) {
     barRadius: 3,
     cursorWidth: 0
   });
+
   wave.load(url);
+
+  // Quando o áudio carregar, mostra a duração total
+  wave.on('ready', () => {
+    const duration = formatTime(wave.getDuration());
+    document.getElementById(`time-${index}`).innerText = `00:00 / ${duration}`;
+  });
+
+  // Atualiza o tempo enquanto toca
+  wave.on('audioprocess', () => {
+    const current = formatTime(wave.getCurrentTime());
+    const duration = formatTime(wave.getDuration());
+    document.getElementById(`time-${index}`).innerText = `${current} / ${duration}`;
+  });
+
+  // Reseta o tempo quando termina
+  wave.on('finish', () => {
+    document.getElementById(`btn-${index}`).innerText = "▶";
+    document.getElementById(`beat-row-${index}`).classList.remove('active');
+  });
+
   players[index] = wave;
 }
 
@@ -355,7 +364,6 @@ beatList.forEach((beat, i) => {
 
 </body>
 </html>
-
 
 
 
