@@ -48,15 +48,18 @@ h1 {
   font-size: 14px;
 }
 
-/* CAPA */
+/* CAPA COM SOMBRA AZUL */
 .cover {
   width: 100%;
   max-height: 220px;
   object-fit: cover;
   border-radius: 16px;
   margin-bottom: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  /* Apliquei o drop-shadow exatamente como solicitado */
+  filter: drop-shadow(0 5px 15px rgba(101,193,251,0.3));
+  /* Removi o box-shadow antigo para não conflitar */
 }
+
 
 /* PREÇO ATUALIZADO */
 .price {
