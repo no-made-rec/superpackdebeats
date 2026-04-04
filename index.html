@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SUPERPACK DE BEATS</title>
 
 <style>
@@ -9,74 +10,69 @@ body {
   margin: 0;
   background: #0a0a0a;
   color: white;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
 }
 
 .container {
-  max-width: 800px;
+  max-width: 700px;
   margin: auto;
-  padding: 20px;
+  padding: 15px;
 }
 
+/* ANIMAÇÃO */
+.fade {
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* HEADER */
 h1 {
   text-align: center;
-  font-size: 32px;
+  font-size: 26px;
+  margin-top: 10px;
 }
 
 .subtitle {
   text-align: center;
   color: #aaa;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  font-size: 14px;
 }
 
+/* CAPA */
 .cover {
   width: 100%;
-  border-radius: 12px;
+  border-radius: 14px;
   margin-bottom: 20px;
 }
 
+/* BOTÃO */
 .cta {
   display: block;
   text-align: center;
   background: #65c1fb;
   color: black;
-  padding: 15px;
-  border-radius: 10px;
+  padding: 16px;
+  border-radius: 12px;
   margin: 20px 0;
   text-decoration: none;
   font-weight: bold;
+  font-size: 16px;
+  transition: 0.2s;
 }
 
-.beat {
-  background: #141414;
-  padding: 15px;
-  border-radius: 12px;
-  margin-bottom: 15px;
+.cta:hover {
+  transform: scale(1.03);
 }
 
-.info {
-  display: flex;
-  justify-content: space-between;
-  color: #aaa;
-  font-size: 14px;
-}
-
-audio {
-  width: 100%;
-  margin-top: 10px;
-}
-
-.locked {
-  text-align: center;
-  margin: 40px 0;
-  padding: 25px;
-  background: #111;
-  border-radius: 12px;
-}
-
+/* PREÇO */
 .price {
   text-align: center;
-  margin: 20px 0;
+  margin: 15px 0;
 }
 
 .old {
@@ -85,16 +81,76 @@ audio {
 }
 
 .new {
-  font-size: 30px;
+  font-size: 28px;
   color: #65c1fb;
   font-weight: bold;
+}
+
+/* BEAT CARD */
+.beat {
+  background: #141414;
+  padding: 15px;
+  border-radius: 14px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.beat strong {
+  font-size: 16px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  color: #aaa;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* PLAYER */
+audio {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+/* BLOCO FINAL */
+.locked {
+  text-align: center;
+  margin: 30px 0;
+  padding: 20px;
+  background: #111;
+  border-radius: 14px;
+}
+
+/* BOTÃO FIXO MOBILE */
+.fixed-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #65c1fb;
+  text-align: center;
+  padding: 15px;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  font-size: 16px;
+  box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+}
+
+/* RESPONSIVO */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 32px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="container fade">
 
 <h1>🔥 SUPERPACK DE BEATS</h1>
 
@@ -102,7 +158,6 @@ audio {
 36 beats exclusivos • Prontos para gravação • Acesso imediato
 </p>
 
-<!-- CAPA -->
 <img src="img/capa.jpg" class="cover">
 
 <a class="cta" href="https://mpago.li/2k8gYXw" target="_blank">
@@ -115,7 +170,7 @@ LIBERAR OS 36 BEATS AGORA
 </div>
 
 <!-- BEAT 1 -->
-<div class="beat">
+<div class="beat fade">
   <strong>WHAT</strong>
   <div class="info">
     <span>BPM: 103</span>
@@ -127,12 +182,12 @@ LIBERAR OS 36 BEATS AGORA
   </audio>
 </div>
 
-<!-- BLOCO DE VENDA -->
-<div class="locked">
+<!-- BLOCO FINAL -->
+<div class="locked fade">
   <h2>🔒 Desbloqueie os 36 Beats Completos</h2>
 
   <p>
-  Acesso imediato • Qualidade profissional • Prontos para gravar
+  Acesso imediato • Qualidade profissional • Pronto pra lançar
   </p>
 
   <a class="cta" href="https://mpago.li/2k8gYXw" target="_blank">
@@ -142,8 +197,14 @@ LIBERAR OS 36 BEATS AGORA
 
 </div>
 
+<!-- BOTÃO FIXO -->
+<a class="fixed-cta" href="https://mpago.li/2k8gYXw" target="_blank">
+LIBERAR PACK POR R$ 85
+</a>
+
 </body>
 </html>
+
 
 
 
