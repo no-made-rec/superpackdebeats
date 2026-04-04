@@ -129,7 +129,7 @@ h1 {
   align-items: center;
 }
 
-/* CORREÇÃO DO BOTÃO SEM EMOJI */
+/* BOTÃO DE PLAY (SEM EMOJI) */
 .play-btn {
   background: #65c1fb;
   border: none;
@@ -144,7 +144,6 @@ h1 {
   position: relative;
 }
 
-/* Desenho do Play (Triângulo) */
 .play-btn::before {
   content: "";
   display: block;
@@ -154,10 +153,8 @@ h1 {
   border-bottom: 6px solid transparent;
   border-left: 10px solid #000;
   margin-left: 3px;
-  transition: 0.1s;
 }
 
-/* Desenho do Pause (Barras) - Ativado via classe .playing */
 .play-btn.playing::before {
   border: none;
   width: 10px;
@@ -282,29 +279,30 @@ h1 {
 <a class="fixed-cta" href="https://mpago.li/2k8gYXw" target="_blank">APROVEITAR OFERTA - R$ 85</a>
 
 <script>
+// LISTA COM NOMES DE EXIBIÇÃO CUSTOMIZADOS
 const beatList = [
-  { name: "what", bpm: "103", key: "G#m" },
-  { name: "dope", bpm: "132", key: "C#m" },
-  { name: "groupies", bpm: "140", key: "Fm" },
-  { name: "delivery", bpm: "158", key: "G#m" },
-  { name: "damn", bpm: "130", key: "Bm" },
-  { name: "shining", bpm: "172", key: "Am" },
-  { name: "explosion", bpm: "150", key: "Em" },
-  { name: "caveman", bpm: "90", key: "C" },
-  { name: "burning-coffin", bpm: "143", key: "Am" },
-  { name: "always", bpm: "125", key: "Em" }
+  { name: "what", display: "WHAT", bpm: "103", key: "G#m" },
+  { name: "dope", display: "DOPE", bpm: "132", key: "C#m" },
+  { name: "groupies", display: "GROUPIES", bpm: "140", key: "Fm" },
+  { name: "delivery", display: "DELIVERY", bpm: "158", key: "G#m" },
+  { name: "damn", display: "DAMN", bpm: "130", key: "Bm" },
+  { name: "shining", display: "SHINING", bpm: "172", key: "Am" },
+  { name: "explosion", display: "EXPLOSION", bpm: "150", key: "Em" },
+  { name: "caveman", display: "CAVEMAN", bpm: "90", key: "C" },
+  { name: "burning-coffin", display: "BURNING COFFIN", bpm: "143", key: "Am" },
+  { name: "always", display: "ALWAYS", bpm: "125", key: "Em" }
 ];
 
 let players = [];
 let current = null;
 const container = document.getElementById("beats");
 
-// Gerar botões sem o texto do play (o CSS preenche)
+// Gerando HTML usando beat.display para o título
 beatList.forEach((beat, i) => {
   container.innerHTML += `
     <div class="beat" id="beat-row-${i}" onclick="playBeat(${i})">
       <div class="top">
-        <strong>${beat.name.toUpperCase()}</strong>
+        <strong>${beat.display}</strong>
         <button class="play-btn" id="btn-${i}"></button>
       </div>
       <div id="waveform-${i}" class="waveform"></div>
@@ -370,7 +368,6 @@ function playBeat(index) {
   players[index].playPause();
   current = index;
 
-  // Lógica corrigida para alternar classes em vez de texto
   if (players[index].isPlaying()) {
     btn.classList.add('playing');
     row.classList.add('active');
