@@ -109,26 +109,18 @@ h1 {
   border-radius: 24px;
   margin-bottom: 15px;
   border: 1px solid rgba(255,255,255,0.05);
-  transition: background 0.4s ease, color 0.4s ease; /* Transição suave para o negativo */
+  transition: 0.3s;
   cursor: pointer;
-  color: white;
 }
 
 .beat:hover {
   background: rgba(255,255,255,0.06);
 }
 
-/* EFEITO NEGATIVO QUANDO ATIVO */
 .beat.active {
-  background: white !important;
-  color: black !important;
-  box-shadow: 0 10px 30px rgba(255,255,255,0.2);
-}
-
-.beat.active strong, 
-.beat.active .info, 
-.beat.active .time-display {
-  color: black !important;
+  border: 1px solid #65c1fb;
+  background: rgba(101,193,251,0.05);
+  box-shadow: 0 0 20px rgba(101,193,251,0.2);
 }
 
 .top {
@@ -151,15 +143,9 @@ h1 {
   transition: 0.2s;
 }
 
-/* Botão de play fica preto quando o fundo do beat fica branco */
-.beat.active .play-btn {
-  background: black;
-  color: white;
-}
-
 .info {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Espaça BPM/Key do Tempo */
   align-items: center;
   color: #888;
   font-size: 12px;
@@ -168,8 +154,8 @@ h1 {
 }
 
 .time-display {
-  color: #65c1fb;
-  font-family: monospace;
+  color: #65c1fb; /* Azul para destacar o tempo */
+  font-family: monospace; /* Estilo digital */
   font-size: 13px;
 }
 
@@ -293,13 +279,13 @@ beatList.forEach((beat, i) => {
   container.innerHTML += `
     <div class="beat" id="beat-row-${i}" onclick="playBeat(${i})">
       <div class="top">
-        <strong class="beat-name">${beat.name.toUpperCase()}</strong>
+        <strong>${beat.name.toUpperCase()}</strong>
         <button class="play-btn" id="btn-${i}">▶</button>
       </div>
       <div id="waveform-${i}" class="waveform"></div>
       <div class="info">
-        <div class="specs">
-           <span>BPM ${beat.bpm}</span> | <span>NOTA ${beat.key}</span>
+        <div>
+           <span>BPM ${beat.bpm}</span> | <span>TOM ${beat.key}</span>
         </div>
         <span class="time-display" id="time-${i}">00:00 / 00:00</span>
       </div>
@@ -327,21 +313,23 @@ function createPlayer(index, url) {
 
   wave.load(url);
 
+  // Quando o áudio carregar, mostra a duração total
   wave.on('ready', () => {
     const duration = formatTime(wave.getDuration());
     document.getElementById(`time-${index}`).innerText = `00:00 / ${duration}`;
   });
 
+  // Atualiza o tempo enquanto toca
   wave.on('audioprocess', () => {
     const current = formatTime(wave.getCurrentTime());
     const duration = formatTime(wave.getDuration());
     document.getElementById(`time-${index}`).innerText = `${current} / ${duration}`;
   });
 
+  // Reseta o tempo quando termina
   wave.on('finish', () => {
     document.getElementById(`btn-${index}`).innerText = "▶";
     document.getElementById(`beat-row-${index}`).classList.remove('active');
-    // Reseta a cor da onda se quiser, mas deixamos azul pra saber que já ouviu
   });
 
   players[index] = wave;
