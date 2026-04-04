@@ -6,10 +6,10 @@
 
 <style>
 body {
+  margin: 0;
   background: #0a0a0a;
   color: white;
   font-family: Arial;
-  margin: 0;
 }
 
 .container {
@@ -27,6 +27,12 @@ h1 {
   text-align: center;
   color: #aaa;
   margin-bottom: 30px;
+}
+
+.cover {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 20px;
 }
 
 .cta {
@@ -51,8 +57,8 @@ h1 {
 .info {
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
   color: #aaa;
+  font-size: 14px;
 }
 
 audio {
@@ -60,9 +66,17 @@ audio {
   margin-top: 10px;
 }
 
+.locked {
+  text-align: center;
+  margin: 40px 0;
+  padding: 20px;
+  background: #111;
+  border-radius: 12px;
+}
+
 .price {
   text-align: center;
-  margin: 30px 0;
+  margin: 20px 0;
 }
 
 .old {
@@ -82,43 +96,40 @@ audio {
 <div class="container">
 
 <h1>🔥 Superpack de Beats</h1>
-<p class="subtitle">36 beats originais • Prontos para gravação</p>
+<p class="subtitle">36 beats exclusivos • Ouça o preview abaixo</p>
 
+<!-- CAPA (depois você troca o link) -->
+<img src="img/capa.jpg" class="cover">
 
+<a class="cta" href="#">COMPRAR AGORA</a>
 
 <div class="price">
-  <div class="old">De R$ 189,90</div>
-  <div class="new">Por R$ 85</div>
+  <div class="old">De R$ 497</div>
+  <div class="new">Por R$ 197</div>
 </div>
 
-<!-- BEAT -->
+<!-- BEAT TESTE -->
 <div class="beat">
-  <strong>Teste 01</strong>
+  <strong>WHAT</strong>
   <div class="info">
-    <span>BPM: 140</span>
-    <span>Key: F#m</span>
+    <span>BPM: ???</span>
+    <span>Key: ???</span>
   </div>
+
   <audio controls>
-    <source src="LINK_DO_AUDIO.mp3">
+    <source src="audio/what.mp3" type="audio/mpeg">
   </audio>
 </div>
 
-<div class="beat">
-  <strong>Teste 02</strong>
-  <div class="info">
-    <span>BPM: 160</span>
-    <span>Key: Fm</span>
-  </div>
-  <audio controls>
-    <source src="LINK_DO_AUDIO.mp3">
-  </audio>
+<!-- BLOCO DE VENDA -->
+<div class="locked">
+  <h2>🔒 Desbloqueie o Pack Completo</h2>
+  <p>+26 beats exclusivos • WAV • Pronto pra lançar</p>
+  <a class="cta" href="#">QUERO OS 36 BEATS</a>
 </div>
-
-<!-- DUPLICA ISSO PRA CADA BEAT -->
-
-<a class="cta" href="SEU_LINK_DE_COMPRA">GARANTIR PACK</a>
 
 </div>
 
 </body>
 </html>
+
