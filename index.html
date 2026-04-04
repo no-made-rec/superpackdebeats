@@ -24,8 +24,9 @@ body {
 /* LOGO */
 .logo {
   display: block;
-  margin: 10px auto;
-  height: 50px;
+  margin: 20px auto;
+  height: 90px;
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
 }
 
 /* HEADER */
@@ -44,6 +45,8 @@ h1 {
 /* CAPA */
 .cover {
   width: 100%;
+  max-height: 220px;
+  object-fit: cover;
   border-radius: 16px;
   margin-bottom: 20px;
 }
@@ -69,6 +72,7 @@ h1 {
 /* PREÇO */
 .price {
   text-align: center;
+  margin-bottom: 35px;
 }
 
 .old {
@@ -156,6 +160,13 @@ h1 {
   color: black;
   text-decoration: none;
 }
+
+/* RESPONSIVO */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 32px;
+  }
+}
 </style>
 </head>
 
@@ -192,8 +203,7 @@ LIBERAR OS 36 BEATS AGORA
 </div>
 
 <div class="footer">
-  <p>Contato: seuemail@email.com</p>
-  <p>© 2026 apzin. Todos os direitos reservados.</p>
+  <p>© 2026 Nômade Record's. Todos os direitos reservados.</p>
 </div>
 
 </div>
@@ -262,6 +272,7 @@ beatList.forEach((name, i) => {
 
 </body>
 </html>
+
 
 
 
