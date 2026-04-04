@@ -69,23 +69,23 @@ h1 {
 .old {
   text-decoration: line-through;
   color: #ff4d4d; /* VERMELHO VIVO */
-  font-size: 20px; /* Aumentado conforme solicitado */
+  font-size: 20px;
   font-weight: bold;
   opacity: 0.8;
 }
 
 .new {
-  font-size: 36px; /* Mantive o tamanho grande */
+  font-size: 36px;
   color: #2ecc71; /* VERDE POSITIVO */
   font-weight: 900;
   margin-top: 5px;
 }
 
-/* BOTÃO */
+/* BOTÃO PADRÃO (AZUL NÔMADE) */
 .cta {
   display: block;
   text-align: center;
-  background: linear-gradient(135deg, #65c1fb, #4ea8de);
+  background: #65c1fb;
   color: #000;
   padding: 18px;
   border-radius: 14px;
@@ -97,7 +97,7 @@ h1 {
 }
 
 .cta:hover {
-  background: #ffd84d;
+  background: #fff;
   transform: scale(1.02);
 }
   
@@ -143,7 +143,7 @@ h1 {
 }
 
 .play-btn:hover {
-  background: #ffd84d;
+  background: #fff;
   transform: scale(1.1);
 }
 
@@ -170,6 +170,7 @@ h1 {
   border-radius: 20px;
 }
 
+/* FOOTER */
 .footer {
   text-align: center;
   color: #555;
@@ -177,7 +178,7 @@ h1 {
   margin: 50px 0 100px;
 }
 
-/* BOTÃO FIXO COM PULSO */
+/* BOTÃO FIXO (AGORA EM VERDE #2ecc71) */
 .fixed-cta {
   position: fixed;
   bottom: 20px;
@@ -185,7 +186,7 @@ h1 {
   transform: translateX(-50%);
   width: 90%;
   max-width: 450px;
-  background: linear-gradient(135deg, #65c1fb, #4ea8de);
+  background: #2ecc71; /* MESMA COR DO PREÇO NOVO */
   text-align: center;
   padding: 16px;
   font-weight: 900;
@@ -198,9 +199,9 @@ h1 {
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(101, 193, 251, 0.7); }
-  70% { box-shadow: 0 0 0 15px rgba(101, 193, 251, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(101, 193, 251, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+  70% { box-shadow: 0 0 0 15px rgba(46, 204, 113, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
 }
 
 @keyframes slideUp {
@@ -218,7 +219,7 @@ h1 {
 
 <div class="container">
 
-  <img src="img/logo.png" class="logo" alt="Feelade Logo">
+  <img src="img/logo.png" class="logo" alt="Nômade Record's">
 
   <img src="img/capa.jpg" class="cover">
 
@@ -260,7 +261,6 @@ h1 {
 </a>
 
 <script>
-// 1. LISTA ORGANIZADA (Adicione o BPM e KEY reais aqui)
 const beatList = [
   { name: "what", bpm: "140", key: "Am" },
   { name: "dope", bpm: "132", key: "C#m" },
@@ -278,7 +278,6 @@ let players = [];
 let current = null;
 const container = document.getElementById("beats");
 
-// 2. GERAR O HTML AUTOMATICAMENTE
 beatList.forEach((beat, i) => {
   container.innerHTML += `
     <div class="beat" id="beat-row-${i}" onclick="playBeat(${i})">
@@ -286,18 +285,15 @@ beatList.forEach((beat, i) => {
         <strong>${beat.name.toUpperCase()}</strong>
         <button class="play-btn" id="btn-${i}">▶</button>
       </div>
-
       <div class="info">
-        <span><small>BPM</small> ${beat.bpm}</span>
-        <span><small>TOM</small> ${beat.key}</span>
+        <span>BPM ${beat.bpm}</span>
+        <span>TOM ${beat.key}</span>
       </div>
-
       <div id="waveform-${i}" class="waveform"></div>
     </div>
   `;
 });
 
-// 3. CONFIGURAR PLAYER (COM BARRINHAS ESTILO PROFISSIONAL)
 function createPlayer(index, url) {
   const wave = WaveSurfer.create({
     container: '#waveform-' + index,
@@ -309,28 +305,23 @@ function createPlayer(index, url) {
     barRadius: 3,
     cursorWidth: 0
   });
-
   wave.load(url);
   players[index] = wave;
 }
 
-// 4. LÓGICA DE PLAY/PAUSE E INTERAÇÃO
 function playBeat(index) {
   const btn = document.getElementById(`btn-${index}`);
   const row = document.getElementById(`beat-row-${index}`);
 
-  // Se clicar em um beat diferente, para o que estava tocando
   if (current !== null && current !== index) {
     players[current].pause();
     document.getElementById(`beat-row-${current}`).classList.remove('active');
     document.getElementById(`btn-${current}`).innerText = "▶";
   }
 
-  // Alterna Play/Pause
   players[index].playPause();
   current = index;
 
-  // Atualiza visual
   if (players[index].isPlaying()) {
     btn.innerText = "⏸";
     row.classList.add('active');
@@ -340,7 +331,6 @@ function playBeat(index) {
   }
 }
 
-// Inicia o carregamento dos arquivos
 beatList.forEach((beat, i) => {
   createPlayer(i, "audio/" + beat.name + ".mp3");
 });
