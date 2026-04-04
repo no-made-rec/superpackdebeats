@@ -21,6 +21,13 @@ body {
   padding: 16px;
 }
 
+/* LOGO */
+.logo {
+  display: block;
+  margin: 10px auto;
+  height: 50px;
+}
+
 /* HEADER */
 h1 {
   text-align: center;
@@ -129,6 +136,14 @@ h1 {
   border-radius: 14px;
 }
 
+/* FOOTER */
+.footer {
+  text-align: center;
+  color: #777;
+  font-size: 12px;
+  margin: 40px 0 80px;
+}
+
 /* BOTÃO FIXO */
 .fixed-cta {
   position: fixed;
@@ -141,19 +156,14 @@ h1 {
   color: black;
   text-decoration: none;
 }
-
-/* RESPONSIVO */
-@media (min-width: 768px) {
-  h1 {
-    font-size: 32px;
-  }
-}
 </style>
 </head>
 
 <body>
 
 <div class="container">
+
+<img src="img/logo.png" class="logo">
 
 <h1>🔥 SUPERPACK DE BEATS</h1>
 <p class="subtitle">36 beats exclusivos • Acesso imediato</p>
@@ -169,20 +179,8 @@ LIBERAR OS 36 BEATS AGORA
   <div class="new">Por apenas R$ 85</div>
 </div>
 
-<!-- BEAT -->
-<div class="beat" onclick="playBeat(0)">
-  <div class="top">
-    <strong>WHAT</strong>
-    <button class="play-btn">▶</button>
-  </div>
-
-  <div class="info">
-    <span>BPM: 103</span>
-    <span>Key: Abm</span>
-  </div>
-
-  <div id="waveform-0" class="waveform"></div>
-</div>
+<!-- BEATS -->
+<div id="beats"></div>
 
 <div class="locked">
   <h2>🔒 Desbloqueie o Pack Completo</h2>
@@ -193,6 +191,11 @@ LIBERAR OS 36 BEATS AGORA
   </a>
 </div>
 
+<div class="footer">
+  <p>Contato: seuemail@email.com</p>
+  <p>© 2026 apzin. Todos os direitos reservados.</p>
+</div>
+
 </div>
 
 <a class="fixed-cta" href="https://mpago.li/2k8gYXw" target="_blank">
@@ -200,8 +203,33 @@ LIBERAR PACK POR R$ 85
 </a>
 
 <script>
+const beatList = [
+"what","dope","groupies","delivery","damn",
+"shining","explosion","caveman","burning-coffin","always"
+];
+
 let players = [];
 let current = null;
+
+const container = document.getElementById("beats");
+
+beatList.forEach((name, i) => {
+  container.innerHTML += `
+    <div class="beat" onclick="playBeat(${i})">
+      <div class="top">
+        <strong>${name.toUpperCase()}</strong>
+        <button class="play-btn">▶</button>
+      </div>
+
+      <div class="info">
+        <span>BPM: ???</span>
+        <span>Key: ???</span>
+      </div>
+
+      <div id="waveform-${i}" class="waveform"></div>
+    </div>
+  `;
+});
 
 function createPlayer(index, url) {
   const wave = WaveSurfer.create({
@@ -227,11 +255,14 @@ function playBeat(index) {
   document.querySelectorAll('.beat')[index].classList.toggle('active');
 }
 
-createPlayer(0, "audio/what.mp3");
+beatList.forEach((name, i) => {
+  createPlayer(i, "audio/" + name + ".mp3");
+});
 </script>
 
 </body>
 </html>
+
 
 
 
