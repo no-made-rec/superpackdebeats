@@ -48,18 +48,23 @@ h1 {
   font-size: 14px;
 }
 
-/* CAPA COM SOMBRA AZUL */
 .cover {
   width: 100%;
   max-height: 220px;
   object-fit: cover;
   border-radius: 16px;
   margin-bottom: 25px;
-  /* Apliquei o drop-shadow exatamente como solicitado */
-  filter: drop-shadow(0 5px 15px rgba(101,193,251,0.3));
-  /* Removi o box-shadow antigo para não conflitar */
-}
+  
+  /* PROFUNDIDADE 3D + BRILHO AZUL */
+  /* 1ª sombra: A preta, deslocada para baixo (profundidade) */
+  /* 2ª sombra: A azul, bem espalhada e centralizada (brilho/glow) */
+  box-shadow: 
+    0 15px 35px rgba(0,0,0,0.8), 
+    0 0 20px rgba(101,193,251,0.2);
 
+  /* Remova o filter: drop-shadow se ele ainda estiver lá */
+  filter: none; 
+}
 
 /* PREÇO ATUALIZADO */
 .price {
