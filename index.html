@@ -5,40 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SUPERPACK DE BEATS</title>
 
+<script src="https://unpkg.com/wavesurfer.js"></script>
+
 <style>
 body {
   margin: 0;
-  background: #0a0a0a;
+  background: radial-gradient(circle at top, #111, #000);
   color: white;
-  font-family: Arial, sans-serif;
+  font-family: -apple-system, sans-serif;
 }
 
 .container {
   max-width: 700px;
   margin: auto;
-  padding: 15px;
-}
-
-/* ANIMAÇÃO */
-.fade {
-  animation: fadeIn 0.8s ease;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(10px);}
-  to {opacity: 1; transform: translateY(0);}
+  padding: 16px;
 }
 
 /* HEADER */
 h1 {
   text-align: center;
   font-size: 26px;
-  margin-top: 10px;
 }
 
 .subtitle {
   text-align: center;
-  color: #aaa;
+  color: #bbb;
   margin-bottom: 20px;
   font-size: 14px;
 }
@@ -46,7 +37,7 @@ h1 {
 /* CAPA */
 .cover {
   width: 100%;
-  border-radius: 14px;
+  border-radius: 16px;
   margin-bottom: 20px;
 }
 
@@ -54,30 +45,28 @@ h1 {
 .cta {
   display: block;
   text-align: center;
-  background: #65c1fb;
+  background: linear-gradient(135deg, #65c1fb, #4ea8de);
   color: black;
   padding: 16px;
-  border-radius: 12px;
+  border-radius: 14px;
   margin: 20px 0;
   text-decoration: none;
   font-weight: bold;
-  font-size: 16px;
   transition: 0.2s;
 }
 
 .cta:hover {
-  transform: scale(1.03);
+  background: #ffd84d;
 }
 
 /* PREÇO */
 .price {
   text-align: center;
-  margin: 15px 0;
 }
 
 .old {
   text-decoration: line-through;
-  color: #777;
+  color: #666;
 }
 
 .new {
@@ -86,17 +75,37 @@ h1 {
   font-weight: bold;
 }
 
-/* BEAT CARD */
+/* BEAT */
 .beat {
-  background: #141414;
-  padding: 15px;
+  background: #111;
+  padding: 16px;
   border-radius: 14px;
   margin-bottom: 15px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.05);
 }
 
-.beat strong {
-  font-size: 16px;
+.beat.active {
+  border: 1px solid #65c1fb;
+  box-shadow: 0 0 20px rgba(101,193,251,0.4);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.play-btn {
+  background: #65c1fb;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.play-btn:hover {
+  background: #ffd84d;
 }
 
 .info {
@@ -107,11 +116,8 @@ h1 {
   margin-top: 5px;
 }
 
-/* PLAYER */
-audio {
-  width: 100%;
+.waveform {
   margin-top: 10px;
-  border-radius: 8px;
 }
 
 /* BLOCO FINAL */
@@ -123,20 +129,17 @@ audio {
   border-radius: 14px;
 }
 
-/* BOTÃO FIXO MOBILE */
+/* BOTÃO FIXO */
 .fixed-cta {
   position: fixed;
   bottom: 0;
-  left: 0;
   width: 100%;
   background: #65c1fb;
   text-align: center;
-  padding: 15px;
+  padding: 16px;
   font-weight: bold;
   color: black;
   text-decoration: none;
-  font-size: 16px;
-  box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
 }
 
 /* RESPONSIVO */
@@ -150,13 +153,10 @@ audio {
 
 <body>
 
-<div class="container fade">
+<div class="container">
 
 <h1>🔥 SUPERPACK DE BEATS</h1>
-
-<p class="subtitle">
-36 beats exclusivos • Prontos para gravação • Acesso imediato
-</p>
+<p class="subtitle">36 beats exclusivos • Acesso imediato</p>
 
 <img src="img/capa.jpg" class="cover">
 
@@ -169,41 +169,70 @@ LIBERAR OS 36 BEATS AGORA
   <div class="new">Por apenas R$ 85</div>
 </div>
 
-<!-- BEAT 1 -->
-<div class="beat fade">
-  <strong>WHAT</strong>
+<!-- BEAT -->
+<div class="beat" onclick="playBeat(0)">
+  <div class="top">
+    <strong>WHAT</strong>
+    <button class="play-btn">▶</button>
+  </div>
+
   <div class="info">
     <span>BPM: 103</span>
     <span>Key: Abm</span>
   </div>
 
-  <audio controls>
-    <source src="audio/what.mp3" type="audio/mpeg">
-  </audio>
+  <div id="waveform-0" class="waveform"></div>
 </div>
 
-<!-- BLOCO FINAL -->
-<div class="locked fade">
-  <h2>🔒 Desbloqueie os 36 Beats Completos</h2>
-
-  <p>
-  Acesso imediato • Qualidade profissional • Pronto pra lançar
-  </p>
+<div class="locked">
+  <h2>🔒 Desbloqueie o Pack Completo</h2>
+  <p>+26 beats exclusivos • Qualidade profissional</p>
 
   <a class="cta" href="https://mpago.li/2k8gYXw" target="_blank">
-  ACESSAR PACK COMPLETO
+  ACESSAR AGORA
   </a>
 </div>
 
 </div>
 
-<!-- BOTÃO FIXO -->
 <a class="fixed-cta" href="https://mpago.li/2k8gYXw" target="_blank">
 LIBERAR PACK POR R$ 85
 </a>
 
+<script>
+let players = [];
+let current = null;
+
+function createPlayer(index, url) {
+  const wave = WaveSurfer.create({
+    container: '#waveform-' + index,
+    waveColor: '#555',
+    progressColor: '#65c1fb',
+    height: 60
+  });
+
+  wave.load(url);
+  players[index] = wave;
+}
+
+function playBeat(index) {
+  if (current !== null && current !== index) {
+    players[current].pause();
+    document.querySelectorAll('.beat')[current].classList.remove('active');
+  }
+
+  players[index].playPause();
+  current = index;
+
+  document.querySelectorAll('.beat')[index].classList.toggle('active');
+}
+
+createPlayer(0, "audio/what.mp3");
+</script>
+
 </body>
 </html>
+
 
 
 
