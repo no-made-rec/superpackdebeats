@@ -48,13 +48,13 @@ h1 {
   font-size: 14px;
 }
 
-/* CAPA */
+/* CAPA - AJUSTADA PARA MAIOR FOCO */
 .cover {
   width: 100%;
-  max-height: 178px;
+  max-height: 250px; /* Aumentado para aproximar o centro */
   object-fit: cover;
   object-position: center;
-  border-radius: 24px;
+  border-radius: 32px; /* Border-radius maior */
   margin-bottom: 25px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 25px rgba(101,193,251,0.15);
 }
@@ -70,7 +70,7 @@ h1 {
 .old {
   text-decoration: line-through;
   color: #ff4d4d;
-  font-size: 20px;
+  font-size: 22px; /* Pouco maior */
   font-weight: bold;
   opacity: 0.8;
 }
@@ -89,7 +89,7 @@ h1 {
   background: #65c1fb;
   color: #000;
   padding: 18px;
-  border-radius: 20px;
+  border-radius: 24px;
   margin: 20px 0;
   text-decoration: none;
   font-weight: 800;
@@ -106,10 +106,10 @@ h1 {
 .beat {
   background: rgba(255,255,255,0.03);
   padding: 20px;
-  border-radius: 24px;
+  border-radius: 28px; /* Border-radius maior */
   margin-bottom: 15px;
   border: 1px solid rgba(255,255,255,0.05);
-  transition: 0.3s;
+  transition: background 0.4s ease, color 0.4s ease;
   cursor: pointer;
 }
 
@@ -117,10 +117,17 @@ h1 {
   background: rgba(255,255,255,0.06);
 }
 
+/* EFEITO NEGATIVO SUAVE */
 .beat.active {
-  border: 1px solid #65c1fb;
-  background: rgba(101,193,251,0.05);
-  box-shadow: 0 0 20px rgba(101,193,251,0.2);
+  background: #d1d1d1 !important;
+  color: #000 !important;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+
+.beat.active strong,
+.beat.active .info,
+.beat.active .time-display {
+  color: #000 !important;
 }
 
 .top {
@@ -129,23 +136,56 @@ h1 {
   align-items: center;
 }
 
+/* BOTÃO DE PLAY SEM EMOJI (CSS PURO) */
 .play-btn {
   background: #65c1fb;
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 14px;
   transition: 0.2s;
+  position: relative;
+}
+
+/* Triângulo de Play */
+.play-btn::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 11px solid #000;
+  margin-left: 4px;
+  display: block;
+}
+
+/* Barras de Pause */
+.play-btn.playing::before {
+  border: none;
+  width: 12px;
+  height: 14px;
+  border-left: 4px solid #000;
+  border-right: 4px solid #000;
+  margin-left: 0;
+}
+
+.beat.active .play-btn {
+  background: #000 !important;
+}
+
+.beat.active .play-btn::before,
+.beat.active .play-btn.playing::before {
+  border-left-color: #fff;
+  border-right-color: #fff;
 }
 
 .info {
   display: flex;
-  justify-content: space-between; /* Espaça BPM/Key do Tempo */
+  justify-content: space-between;
   align-items: center;
   color: #888;
   font-size: 12px;
@@ -154,8 +194,8 @@ h1 {
 }
 
 .time-display {
-  color: #65c1fb; /* Azul para destacar o tempo */
-  font-family: monospace; /* Estilo digital */
+  color: #65c1fb;
+  font-family: monospace;
   font-size: 13px;
 }
 
@@ -170,7 +210,7 @@ h1 {
   padding: 30px;
   background: #111;
   border: 1px dashed #333;
-  border-radius: 28px;
+  border-radius: 32px;
 }
 
 /* FOOTER */
@@ -195,7 +235,7 @@ h1 {
   font-weight: 900;
   color: #000;
   text-decoration: none;
-  border-radius: 22px;
+  border-radius: 26px;
   box-shadow: 0 10px 40px rgba(0,0,0,0.8);
   z-index: 9999;
   transition: all 0.3s ease; 
@@ -216,6 +256,10 @@ h1 {
 @keyframes slideUp {
   from { opacity: 0; transform: translate(-50%, 40px); }
   to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@media (min-width: 768px) {
+  h1 { font-size: 32px; }
 }
 </style>
 </head>
@@ -280,7 +324,7 @@ beatList.forEach((beat, i) => {
     <div class="beat" id="beat-row-${i}" onclick="playBeat(${i})">
       <div class="top">
         <strong>${beat.name.toUpperCase()}</strong>
-        <button class="play-btn" id="btn-${i}">▶</button>
+        <button class="play-btn" id="btn-${i}"></button>
       </div>
       <div id="waveform-${i}" class="waveform"></div>
       <div class="info">
@@ -313,22 +357,19 @@ function createPlayer(index, url) {
 
   wave.load(url);
 
-  // Quando o áudio carregar, mostra a duração total
   wave.on('ready', () => {
     const duration = formatTime(wave.getDuration());
     document.getElementById(`time-${index}`).innerText = `00:00 / ${duration}`;
   });
 
-  // Atualiza o tempo enquanto toca
   wave.on('audioprocess', () => {
-    const current = formatTime(wave.getCurrentTime());
+    const currentTime = formatTime(wave.getCurrentTime());
     const duration = formatTime(wave.getDuration());
-    document.getElementById(`time-${index}`).innerText = `${current} / ${duration}`;
+    document.getElementById(`time-${index}`).innerText = `${currentTime} / ${duration}`;
   });
 
-  // Reseta o tempo quando termina
   wave.on('finish', () => {
-    document.getElementById(`btn-${index}`).innerText = "▶";
+    document.getElementById(`btn-${index}`).classList.remove('playing');
     document.getElementById(`beat-row-${index}`).classList.remove('active');
   });
 
@@ -342,17 +383,17 @@ function playBeat(index) {
   if (current !== null && current !== index) {
     players[current].pause();
     document.getElementById(`beat-row-${current}`).classList.remove('active');
-    document.getElementById(`btn-${current}`).innerText = "▶";
+    document.getElementById(`btn-${current}`).classList.remove('playing');
   }
 
   players[index].playPause();
   current = index;
 
   if (players[index].isPlaying()) {
-    btn.innerText = "⏸";
+    btn.classList.add('playing');
     row.classList.add('active');
   } else {
-    btn.innerText = "▶";
+    btn.classList.remove('playing');
     row.classList.remove('active');
   }
 }
