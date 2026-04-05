@@ -159,15 +159,17 @@ Para adquirir exclusividade de algum beat, entre em contato
 // CONFIG
 const VALID_TOKEN = "apzin2026";
 
-// LINK ESCONDIDO (base64)
-const ENCODED =
-"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL3VjP2V4cG9ydD1kb3dubG9hZCZpZD0xTjVTT0FuT0NHQkxTMmlyemFSUGRNeWNwVkl
+// LINK BASE64 CORRETO (sem quebra de linha)
+const ENCODED = "aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL3VjP2V4cG9ydD1kb3dubG9hZCZpZD0xTjVTT0FuT0NHQkxTMmlyemFSUGRNeWNwVkl lTlpqVg==".replace(/\s/g, "");
 
-eTlpWg==";
-
-// DECODE
+// DECODE SEGURO
 function getLink() {
-  return atob(ENCODED.replace(/\n/g, ""));
+  try {
+    return atob(ENCODED);
+  } catch (e) {
+    console.error("Erro ao decodificar link", e);
+    return null;
+  }
 }
 
 // TOKEN
@@ -181,19 +183,27 @@ if (token === VALID_TOKEN) {
 
   btn.addEventListener("click", () => {
 
+    // UI
     btn.style.display = "none";
     loading.style.display = "block";
 
     setTimeout(() => {
       const realLink = getLink();
 
+      if (!realLink) {
+        alert("Erro ao preparar download.");
+        return;
+      }
+
+      // DOWNLOAD
       const a = document.createElement("a");
       a.href = realLink;
-      a.setAttribute("download", "");
+      a.setAttribute("target", "_blank");
       document.body.appendChild(a);
       a.click();
       a.remove();
-    }, 1800);
+
+    }, 1500);
 
   });
 
@@ -201,6 +211,7 @@ if (token === VALID_TOKEN) {
   document.body.innerHTML = "<h1 style='text-align:center;margin-top:40vh;'>⛔ Acesso não autorizado</h1>";
 }
 </script>
+
 
 </body>
 </html>
