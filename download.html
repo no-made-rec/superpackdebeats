@@ -166,11 +166,15 @@ const token = params.get("token");
 const btn = document.getElementById("downloadBtn");
 const loading = document.getElementById("loading");
 
+let completed = false;
+
 if (token === VALID_TOKEN) {
 
   btn.addEventListener("click", () => {
 
-    // estado 1 → loading
+    if (completed) return; // 🔒 trava depois de concluído
+
+    // estado loading
     btn.style.display = "none";
     loading.style.display = "block";
 
@@ -179,14 +183,22 @@ if (token === VALID_TOKEN) {
       window.open(FILE, "_blank");
     }, 1200);
 
-    // estado 2 → concluído
+    // estado final
     setTimeout(() => {
+
+      completed = true;
+
       loading.style.display = "none";
 
       btn.style.display = "block";
-      btn.innerHTML = "✅ DOWNLOAD REALIZADO";
+      btn.innerHTML = "✔ DOWNLOAD CONCLUÍDO";
       btn.style.background = "#2ecc71";
-      btn.style.color = "#000";
+      btn.style.color = "#fff";
+      btn.style.cursor = "default";
+      btn.style.transform = "none";
+
+      // remove qualquer interação futura
+      btn.replaceWith(btn.cloneNode(true));
 
     }, 20000);
 
@@ -202,6 +214,7 @@ if (token === VALID_TOKEN) {
   `;
 }
 </script>
+
 
 
 
