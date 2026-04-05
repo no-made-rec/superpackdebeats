@@ -15,6 +15,17 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
+  .fade-out {
+  animation: fadeOut 0.6s ease forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
 .container {
   max-width: 700px;
   margin: auto;
@@ -123,7 +134,7 @@ h1 {
 <img src="img/logo.png" class="logo">
 <img src="img/capa.jpg" class="cover">
 
-<h1>🎧 DOWNLOAD LIBERADO</h1>
+<h1 id="title">🎧 DOWNLOAD LIBERADO</h1>
 
 <p class="subtitle">
 Parabéns pela aquisição do <strong>SUPERPACK DE BEATS</strong><br>
@@ -165,6 +176,7 @@ const token = params.get("token");
 
 const btn = document.getElementById("downloadBtn");
 const loading = document.getElementById("loading");
+const title = document.getElementById("title");
 
 let completed = false;
 
@@ -172,9 +184,9 @@ if (token === VALID_TOKEN) {
 
   btn.addEventListener("click", () => {
 
-    if (completed) return; // 🔒 trava depois de concluído
+    if (completed) return;
 
-    // estado loading
+    // loading
     btn.style.display = "none";
     loading.style.display = "block";
 
@@ -183,10 +195,15 @@ if (token === VALID_TOKEN) {
       window.open(FILE, "_blank");
     }, 1200);
 
-    // estado final
+    // FINAL (10 segundos agora)
     setTimeout(() => {
 
       completed = true;
+
+      // anima título saindo
+      if (title) {
+        title.classList.add("fade-out");
+      }
 
       loading.style.display = "none";
 
@@ -197,10 +214,10 @@ if (token === VALID_TOKEN) {
       btn.style.cursor = "default";
       btn.style.transform = "none";
 
-      // remove qualquer interação futura
+      // trava botão
       btn.replaceWith(btn.cloneNode(true));
 
-    }, 20000);
+    }, 10000);
 
   });
 
@@ -214,8 +231,6 @@ if (token === VALID_TOKEN) {
   `;
 }
 </script>
-
-
 
 
 
