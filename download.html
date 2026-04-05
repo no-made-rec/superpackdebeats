@@ -170,19 +170,39 @@ if (token === VALID_TOKEN) {
 
   btn.addEventListener("click", () => {
 
+    // estado 1 → loading
     btn.style.display = "none";
     loading.style.display = "block";
 
+    // inicia download
     setTimeout(() => {
       window.open(FILE, "_blank");
-    }, 1500);
+    }, 1200);
+
+    // estado 2 → concluído
+    setTimeout(() => {
+      loading.style.display = "none";
+
+      btn.style.display = "block";
+      btn.innerHTML = "✅ DOWNLOAD REALIZADO";
+      btn.style.background = "#2ecc71";
+      btn.style.color = "#000";
+
+    }, 20000);
 
   });
 
 } else {
-  document.body.innerHTML = "<h1 style='text-align:center;margin-top:40vh;'>⛔ Acesso não autorizado</h1>";
+
+  document.body.style.background = "#000";
+  document.body.innerHTML = `
+    <div style="display:flex;justify-content:center;align-items:center;height:100vh;text-align:center;">
+      <h1>⛔ Acesso não autorizado</h1>
+    </div>
+  `;
 }
 </script>
+
 
 
 
