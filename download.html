@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download Liberado | Nômade Record's</title>
+
+<meta name="robots" content="noindex">
+
+<style>
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #111, #000);
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 16px;
+  padding-bottom: 120px;
+  text-align: center;
+}
+
+/* LOGO */
+.logo {
+  display: block;
+  margin: 20px auto;
+  height: 80px;
+  filter: drop-shadow(0 5px 15px rgba(101,193,251,0.3));
+}
+
+/* CAPA */
+.cover {
+  width: 100%;
+  max-height: 168px;
+  object-fit: cover;
+  border-radius: 24px;
+  margin-bottom: 25px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 25px rgba(101,193,251,0.15);
+}
+
+/* TEXTOS */
+h1 {
+  font-size: 26px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  color: #bbb;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+/* BOTÃO */
+.cta {
+  display: block;
+  background: #2ecc71;
+  color: #000;
+  padding: 18px;
+  border-radius: 20px;
+  margin: 25px auto;
+  text-decoration: none;
+  font-weight: 900;
+  transition: 0.3s;
+  max-width: 400px;
+}
+
+.cta:hover {
+  background: #fff;
+  transform: scale(1.03);
+}
+
+/* INFO EXTRA */
+.info-box {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #888;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  color: #555;
+  font-size: 12px;
+  margin: 50px 0 100px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<img src="img/logo.png" class="logo">
+<img src="img/capa.jpg" class="cover">
+
+<h1>🎧 DOWNLOAD LIBERADO</h1>
+
+<p class="subtitle">
+Parabéns pela aquisição do <strong>SUPERPACK DE BEATS</strong><br>
+Seu acesso está disponível abaixo
+</p>
+
+<a id="downloadBtn" class="cta" href="#">
+BAIXAR AGORA
+</a>
+
+<div class="info-box">
+<p>✔ Arquivos em alta qualidade (WAV)</p>
+<p>✔ Uso liberado conforme licença</p>
+<p>✔ Download imediato</p>
+</div>
+
+<div class="footer">
+<p style="margin-bottom: 20px; color: #999;">
+⚠️ Licença de uso não-exclusiva (Lease)<br>
+Para exclusividade, entre em contato
+</p>
+<p>© 2026 Nômade Record's. Todos os direitos reservados.</p>
+</div>
+
+</div>
+
+<script>
+// CONFIG
+const VALID_TOKEN = "apzin2026";
+const FILE = "files/pack-84fj39fkf93.zip";
+
+// TOKEN
+const params = new URLSearchParams(window.location.search);
+const token = params.get("token");
+
+const btn = document.getElementById("downloadBtn");
+
+if (token === VALID_TOKEN) {
+  btn.href = FILE;
+  btn.setAttribute("download", "");
+} else {
+  document.body.innerHTML = "<h1 style='text-align:center;margin-top:40vh;'>⛔ Acesso não autorizado</h1>";
+}
+</script>
+
+</body>
+</html>
