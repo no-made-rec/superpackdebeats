@@ -7,7 +7,9 @@
 <script src="https://unpkg.com/wavesurfer.js"></script>
 
 <style>
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -23,6 +25,7 @@ body {
   padding-bottom: 120px;
 }
 
+/* LOGO */
 .logo {
   display: block;
   margin: 20px auto;
@@ -30,22 +33,56 @@ body {
   filter: drop-shadow(0 5px 15px rgba(101,193,251,0.3));
 }
 
-h1 { text-align: center; font-size: 26px; text-transform: uppercase; letter-spacing: 1px; }
-.subtitle { text-align: center; color: #bbb; margin-bottom: 20px; font-size: 14px; }
+/* HEADER */
+h1 {
+  text-align: center;
+  font-size: 26px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 
+.subtitle {
+  text-align: center;
+  color: #bbb;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* CAPA */
 .cover {
   width: 100%;
   max-height: 168px;
   object-fit: cover;
+  object-position: center;
   border-radius: 24px;
   margin-bottom: 25px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 25px rgba(101,193,251,0.15);
 }
 
-.price { text-align: center; margin-bottom: 35px; text-transform: uppercase; }
-.old { text-decoration: line-through; color: #ff4d4d; font-size: 20px; font-weight: bold; opacity: 0.8; }
-.new { font-size: 36px; color: #2ecc71; font-weight: 900; margin-top: 5px; }
+/* PREÇO */
+.price {
+  text-align: center;
+  margin-bottom: 35px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 
+.old {
+  text-decoration: line-through;
+  color: #ff4d4d;
+  font-size: 20px;
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+.new {
+  font-size: 36px;
+  color: #2ecc71;
+  font-weight: 900;
+  margin-top: 5px;
+}
+
+/* BOTÃO PADRÃO */
 .cta {
   display: block;
   text-align: center;
@@ -56,13 +93,16 @@ h1 { text-align: center; font-size: 26px; text-transform: uppercase; letter-spac
   margin: 20px 0;
   text-decoration: none;
   font-weight: 800;
-  transition: 0.3s;
+  transition: all 0.3s ease;
   text-transform: uppercase;
 }
 
-.cta:hover { background: #fff; transform: scale(1.02); }
-
-/* CARDS */
+.cta:hover {
+  background: #fff;
+  transform: scale(1.02);
+}
+  
+/* LISTA DE BEATS */
 .beat {
   background: rgba(255,255,255,0.03);
   padding: 20px;
@@ -73,15 +113,23 @@ h1 { text-align: center; font-size: 26px; text-transform: uppercase; letter-spac
   cursor: pointer;
 }
 
+.beat:hover {
+  background: rgba(255,255,255,0.06);
+}
+
 .beat.active {
   border: 1px solid #65c1fb;
   background: rgba(101,193,251,0.05);
   box-shadow: 0 0 20px rgba(101,193,251,0.2);
 }
 
-.top { display: flex; justify-content: space-between; align-items: center; }
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-/* BOTÃO DE PLAY COM GLOW */
+/* BOTÃO DE PLAY (MANTIDO CONFORME ORIGINAL COM ADIÇÃO DE TRANSITION E GLOW NO PLAYING) */
 .play-btn {
   background: #65c1fb;
   border: none;
@@ -92,16 +140,14 @@ h1 { text-align: center; font-size: 26px; text-transform: uppercase; letter-spac
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease; /* Transição para o efeito de brilho */
+  transition: 0.3s; /* Adicionado para suavizar o glow */
   position: relative;
 }
 
-/* O GLOW NO CÍRCULO (QUANDO ATIVO) */
+/* EFEITO DE GLOW ADICIONADO AQUI */
 .play-btn.playing {
-  background: #fff; /* Muda para branco para o brilho "estourar" mais */
-  box-shadow: 0 0 15px rgba(101,193,251,0.9), 
-              0 0 30px rgba(101,193,251,0.5);
-  transform: scale(1.08);
+  box-shadow: 0 0 15px rgba(101,193,251,0.8), 0 0 30px rgba(101,193,251,0.4);
+  transform: scale(1.05);
 }
 
 .play-btn::before {
@@ -134,9 +180,17 @@ h1 { text-align: center; font-size: 26px; text-transform: uppercase; letter-spac
   font-weight: bold;
 }
 
-.time-display { color: #65c1fb; font-family: monospace; font-size: 13px; }
-.waveform { margin-top: 15px; }
+.time-display {
+  color: #65c1fb;
+  font-family: monospace;
+  font-size: 13px;
+}
 
+.waveform {
+  margin-top: 15px;
+}
+
+/* BLOCO FINAL */
 .locked {
   text-align: center;
   margin: 40px 0;
@@ -146,8 +200,15 @@ h1 { text-align: center; font-size: 26px; text-transform: uppercase; letter-spac
   border-radius: 28px;
 }
 
-.footer { text-align: center; color: #555; font-size: 12px; margin: 50px 0 100px; }
+/* FOOTER */
+.footer {
+  text-align: center;
+  color: #555;
+  font-size: 12px;
+  margin: 50px 0 100px;
+}
 
+/* BOTÃO FIXO */
 .fixed-cta {
   position: fixed;
   bottom: 20px;
@@ -164,8 +225,13 @@ h1 { text-align: center; font-size: 26px; text-transform: uppercase; letter-spac
   border-radius: 22px;
   box-shadow: 0 10px 40px rgba(0,0,0,0.8);
   z-index: 9999;
-  transition: 0.3s;
+  transition: all 0.3s ease; 
   animation: slideUp 0.6s ease, pulse 2s infinite;
+}
+
+.fixed-cta:hover {
+  background: #fff;
+  transform: translateX(-50%) scale(1.05);
 }
 
 @keyframes pulse {
@@ -184,27 +250,34 @@ h1 { text-align: center; font-size: 26px; text-transform: uppercase; letter-spac
 <body>
 
 <div class="container">
-  <img src="img/logo.png" class="logo">
+  <img src="img/logo.png" class="logo" alt="Nômade Record's">
   <img src="img/capa.jpg" class="cover">
+
   <h1>PACK DE BEATS PREMIUM</h1>
   <p class="subtitle">40 Instrumentais Profissionais • Prontos para gravar</p>  
   
   <div class="price">
-    <div class="old">De R$ 199,90</div>
+    <div class="old">De R$ 199,99</div>
     <div class="new">Por apenas R$ 95</div>
   </div>
 
-  <a class="cta" href="https://mpago.li/2k8gYXw" target="_blank">QUERO O PACK COMPLETO AGORA</a>
+  <a class="cta" href="https://mpago.li/2k8gYXw" target="_blank">
+    QUERO O PACK COMPLETO AGORA
+  </a>
 
   <div id="beats"></div>
 
   <div class="locked">
     <h2>🔒 Mais 30 Beats no Pack</h2>
-    <p>Adquira agora e receba acesso imediato aos arquivos WAV</p>
+    <p>Adquira agora e receba acesso imediato aos arquivos em alta qualidade (WAV)</p>
     <a class="cta" href="https://mpago.li/2k8gYXw" target="_blank">LIBERAR TUDO</a>
   </div>
 
   <div class="footer">
+    <p style="margin-bottom: 20px; color: #999;">
+      ⚠️ Licença de uso não-exclusiva (Lease) ⚠️<br> 
+      Para adquirir exclusividade de algum beat, entre em contato
+    </p>
     <p>© 2026 Nômade Record's. Todos os direitos reservados.</p>
   </div>
 </div>
@@ -212,6 +285,7 @@ h1 { text-align: center; font-size: 26px; text-transform: uppercase; letter-spac
 <a class="fixed-cta" href="https://mpago.li/2k8gYXw" target="_blank">APROVEITAR OFERTA - R$ 95</a>
 
 <script>
+// LISTA COM NOMES DE EXIBIÇÃO CUSTOMIZADOS
 const beatList = [
   { name: "what", display: "WHAT", bpm: "103", key: "G#m" },
   { name: "dope", display: "DOPE", bpm: "115", key: "F" },
@@ -229,6 +303,7 @@ let players = [];
 let current = null;
 const container = document.getElementById("beats");
 
+// Gerando HTML usando beat.display para o título
 beatList.forEach((beat, i) => {
   container.innerHTML += `
     <div class="beat" id="beat-row-${i}" onclick="playBeat(${i})">
@@ -238,10 +313,13 @@ beatList.forEach((beat, i) => {
       </div>
       <div id="waveform-${i}" class="waveform"></div>
       <div class="info">
-        <div><span>BPM ${beat.bpm}</span> | <span>NOTA ${beat.key}</span></div>
+        <div>
+           <span>BPM ${beat.bpm}</span> | <span>NOTA ${beat.key}</span>
+        </div>
         <span class="time-display" id="time-${i}">00:00 / 00:00</span>
       </div>
-    </div>`;
+    </div>
+  `;
 });
 
 function formatTime(seconds) {
@@ -265,11 +343,14 @@ function createPlayer(index, url) {
   wave.load(url);
 
   wave.on('ready', () => {
-    document.getElementById(`time-${index}`).innerText = `00:00 / ${formatTime(wave.getDuration())}`;
+    const duration = formatTime(wave.getDuration());
+    document.getElementById(`time-${index}`).innerText = `00:00 / ${duration}`;
   });
 
   wave.on('audioprocess', () => {
-    document.getElementById(`time-${index}`).innerText = `${formatTime(wave.getCurrentTime())} / ${formatTime(wave.getDuration())}`;
+    const currentTime = formatTime(wave.getCurrentTime());
+    const duration = formatTime(wave.getDuration());
+    document.getElementById(`time-${index}`).innerText = `${currentTime} / ${duration}`;
   });
 
   wave.on('finish', () => {
