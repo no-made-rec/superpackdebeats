@@ -66,6 +66,7 @@ h1 {
   font-weight: 900;
   transition: 0.3s;
   max-width: 400px;
+  cursor: pointer;
 }
 
 .cta:hover {
@@ -73,7 +74,32 @@ h1 {
   transform: scale(1.03);
 }
 
-/* INFO EXTRA */
+/* LOADING */
+.loading {
+  margin-top: 20px;
+  display: none;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255,255,255,0.1);
+  border-top: 4px solid #65c1fb;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading p {
+  color: #65c1fb;
+  font-size: 14px;
+}
+
+/* INFO */
 .info-box {
   margin-top: 20px;
   font-size: 13px;
@@ -97,16 +123,21 @@ h1 {
 <img src="img/logo.png" class="logo">
 <img src="img/capa.jpg" class="cover">
 
-<h1>🔥 DOWNLOAD LIBERADO</h1>
+<h1>🎧 DOWNLOAD LIBERADO</h1>
 
 <p class="subtitle">
 Parabéns pela aquisição do <strong>SUPERPACK DE BEATS</strong><br>
 Seu acesso está disponível abaixo
 </p>
 
-<a id="downloadBtn" class="cta" href="#">
+<a id="downloadBtn" class="cta">
 BAIXAR AGORA
 </a>
+
+<div class="loading" id="loading">
+  <div class="spinner"></div>
+  <p>Preparando seu download...</p>
+</div>
 
 <div class="info-box">
 <p>✔ Arquivos em alta qualidade (WAV)</p>
@@ -127,18 +158,45 @@ Para adquirir exclusividade de algum beat, entre em contato
 <script>
 // CONFIG
 const VALID_TOKEN = "apzin2026";
-const FILE = "https://drive.google.com/uc?export=download&id=1N5SOAnOCGBLS2irzaRPdMyycpVIeNZjV";
 
+// LINK ESCONDIDO (base64)
+const ENCODED =
+"aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL3VjP2V4cG9ydD1kb3dubG9hZCZpZD0xTjVTT0FuT0NHQkxTMmlyemFSUGRNeWNwVkl
+
+eTlpWg==";
+
+// DECODE
+function getLink() {
+  return atob(ENCODED.replace(/\n/g, ""));
+}
 
 // TOKEN
 const params = new URLSearchParams(window.location.search);
 const token = params.get("token");
 
 const btn = document.getElementById("downloadBtn");
+const loading = document.getElementById("loading");
 
 if (token === VALID_TOKEN) {
-  btn.href = FILE;
-  btn.setAttribute("download", "");
+
+  btn.addEventListener("click", () => {
+
+    btn.style.display = "none";
+    loading.style.display = "block";
+
+    setTimeout(() => {
+      const realLink = getLink();
+
+      const a = document.createElement("a");
+      a.href = realLink;
+      a.setAttribute("download", "");
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }, 1800);
+
+  });
+
 } else {
   document.body.innerHTML = "<h1 style='text-align:center;margin-top:40vh;'>⛔ Acesso não autorizado</h1>";
 }
@@ -146,3 +204,4 @@ if (token === VALID_TOKEN) {
 
 </body>
 </html>
+
