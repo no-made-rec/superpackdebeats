@@ -23,7 +23,6 @@ body {
   text-align: center;
 }
 
-/* LOGO */
 .logo {
   display: block;
   margin: 20px auto;
@@ -31,7 +30,6 @@ body {
   filter: drop-shadow(0 5px 15px rgba(101,193,251,0.3));
 }
 
-/* CAPA */
 .cover {
   width: 100%;
   max-height: 168px;
@@ -41,7 +39,6 @@ body {
   box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 25px rgba(101,193,251,0.15);
 }
 
-/* TEXTOS */
 h1 {
   font-size: 26px;
   text-transform: uppercase;
@@ -54,7 +51,6 @@ h1 {
   margin-bottom: 25px;
 }
 
-/* BOTÃO */
 .cta {
   display: block;
   background: #2ecc71;
@@ -74,7 +70,6 @@ h1 {
   transform: scale(1.03);
 }
 
-/* LOADING */
 .loading {
   margin-top: 20px;
   display: none;
@@ -126,7 +121,6 @@ h1 {
   }
 }
 
-/* FOOTER */
 .footer {
   text-align: center;
   color: #555;
@@ -146,8 +140,8 @@ h1 {
 <h1 id="title">🎧 DOWNLOAD LIBERADO</h1>
 
 <p class="subtitle" id="subtitle">
-<span id="subtitle-main">Parabéns pela aquisição do <strong>SUPERPACK DE BEATS</strong></span><br>
-<span id="subtitle-sub">Seu acesso está disponível abaixo</span>
+<span>Parabéns pela aquisição do <strong>SUPERPACK DE BEATS</strong></span><br>
+<span>Seu acesso está disponível abaixo</span>
 </p>
 
 <a id="downloadBtn" class="cta">
@@ -170,9 +164,14 @@ Para adquirir exclusividade de algum beat, entre em contato
 </div>
 
 <script>
-const VALID_TOKEN = "apzin2026";
+const VALID_TOKEN = "nmd2K26";
 
-const FILE = "https://drive.google.com/uc?export=download&id=1N5SOAnOCGBLS2irzaRPdMyycpVIeNZjV";
+// BASE64 (sem erro)
+const ENCODED = "aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL3VjP2V4cG9ydD1kb3dubG9hZCZpZD0xTjVTT0FuT0NHQkxTMmlyemFSUGRNeWNwVklZTlpqVg==";
+
+function getLink() {
+  return atob(ENCODED);
+}
 
 const params = new URLSearchParams(window.location.search);
 const token = params.get("token");
@@ -180,7 +179,6 @@ const token = params.get("token");
 const btn = document.getElementById("downloadBtn");
 const loading = document.getElementById("loading");
 const title = document.getElementById("title");
-
 const subtitle = document.getElementById("subtitle");
 
 let completed = false;
@@ -195,7 +193,8 @@ if (token === VALID_TOKEN) {
     loading.style.display = "block";
 
     setTimeout(() => {
-      window.open(FILE, "_blank");
+      const realLink = getLink();
+      window.open(realLink, "_blank");
     }, 1000);
 
     setTimeout(() => {
@@ -206,13 +205,11 @@ if (token === VALID_TOKEN) {
       subtitle.classList.add("fade-out");
 
       setTimeout(() => {
-
         title.innerHTML = "🔥 O PRÓXIMO HIT COMEÇA AGORA";
         title.classList.remove("fade-out");
         title.classList.add("fade-in");
 
         subtitle.style.display = "none";
-
       }, 500);
 
       loading.style.display = "none";
@@ -243,5 +240,6 @@ if (token === VALID_TOKEN) {
 
 </body>
 </html>
+
 
 
