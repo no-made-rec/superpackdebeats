@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Download Liberado | Nômade Record's</title>
+<title>Download Liberado</title>
 
 <meta name="robots" content="noindex">
 
@@ -12,43 +12,22 @@ body {
   margin: 0;
   background: radial-gradient(circle at top, #111, #000);
   color: white;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
-.container {
-  max-width: 700px;
-  margin: auto;
-  padding: 16px;
-  padding-bottom: 120px;
+  font-family: Arial, sans-serif;
   text-align: center;
 }
 
-.logo {
-  display: block;
-  margin: 20px auto;
-  height: 80px;
-  filter: drop-shadow(0 5px 15px rgba(101,193,251,0.3));
-}
-
-.cover {
-  width: 100%;
-  max-height: 168px;
-  object-fit: cover;
-  border-radius: 24px;
-  margin-bottom: 25px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 25px rgba(101,193,251,0.15);
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
 }
 
 h1 {
-  font-size: 26px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  margin-top: 40px;
 }
 
 .subtitle {
-  color: #bbb;
-  font-size: 14px;
-  margin-bottom: 25px;
+  color: #aaa;
 }
 
 .cta {
@@ -57,21 +36,17 @@ h1 {
   color: #000;
   padding: 18px;
   border-radius: 20px;
-  margin: 25px auto;
-  text-decoration: none;
-  font-weight: 900;
-  transition: 0.3s;
-  max-width: 400px;
+  margin: 30px auto;
+  font-weight: bold;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .cta:hover {
-  background: #fff;
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 .loading {
-  margin-top: 20px;
   display: none;
 }
 
@@ -81,7 +56,7 @@ h1 {
   border: 4px solid rgba(255,255,255,0.1);
   border-top: 4px solid #65c1fb;
   border-radius: 50%;
-  margin: 0 auto 10px;
+  margin: 20px auto;
   animation: spin 1s linear infinite;
 }
 
@@ -89,43 +64,21 @@ h1 {
   to { transform: rotate(360deg); }
 }
 
-.loading p {
-  color: #65c1fb;
-  font-size: 14px;
-}
-
-/* ANIMAÇÕES */
 .fade-out {
-  animation: fadeOut 0.5s ease forwards;
+  animation: fadeOut 0.5s forwards;
 }
 
 .fade-in {
-  animation: fadeIn 0.5s ease forwards;
+  animation: fadeIn 0.5s forwards;
 }
 
 @keyframes fadeOut {
-  to {
-    opacity: 0;
-    transform: translateY(-15px);
-  }
+  to { opacity: 0; transform: translateY(-15px); }
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.footer {
-  text-align: center;
-  color: #555;
-  font-size: 12px;
-  margin: 50px 0 100px;
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
@@ -134,72 +87,64 @@ h1 {
 
 <div class="container">
 
-<img src="img/logo.png" class="logo">
-<img src="img/capa.jpg" class="cover">
-
 <h1 id="title">🎧 DOWNLOAD LIBERADO</h1>
 
-<p class="subtitle" id="subtitle">
-<span>Parabéns pela aquisição do <strong>SUPERPACK DE BEATS</strong></span><br>
-<span>Seu acesso está disponível abaixo</span>
+<p id="subtitle" class="subtitle">
+Parabéns pela aquisição do SUPERPACK DE BEATS<br>
+Seu acesso está disponível abaixo
 </p>
 
-<a id="downloadBtn" class="cta">
-BAIXAR AGORA
-</a>
+<div id="btn" class="cta">BAIXAR AGORA</div>
 
-<div class="loading" id="loading">
+<div id="loading" class="loading">
   <div class="spinner"></div>
   <p>Preparando seu download...</p>
-</div>
-
-<div class="footer">
-<p style="margin-bottom: 20px; color: #999;">
-⚠️ Licença de uso não-exclusiva (Lease) ⚠️<br>
-Para adquirir exclusividade de algum beat, entre em contato
-</p>
-<p>© 2026 Nômade Record's. Todos os direitos reservados.</p>
 </div>
 
 </div>
 
 <script>
-const VALID_TOKEN = "nmd2K26";
 
-// BASE64 (sem erro)
-const ENCODED = "aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL3VjP2V4cG9ydD1kb3dubG9hZCZpZD0xTjVTT0FuT0NHQkxTMmlyemFSUGRNeWNwVklZTlpqVg==";
+// 🔐 LINK "ESCONDIDO" (fragmentado)
+const p1 = "https://drive.google.com/";
+const p2 = "uc?export=download&id=";
+const p3 = "1N5SOAnOCGBLS2irzaRPdMyycpVIeNZjV";
 
 function getLink() {
-  return atob(ENCODED);
+  return p1 + p2 + p3;
 }
 
+// 🔑 TOKEN
+const VALID_TOKEN = "apzin2026";
 const params = new URLSearchParams(window.location.search);
 const token = params.get("token");
 
-const btn = document.getElementById("downloadBtn");
+// ELEMENTOS
+const btn = document.getElementById("btn");
 const loading = document.getElementById("loading");
 const title = document.getElementById("title");
 const subtitle = document.getElementById("subtitle");
 
-let completed = false;
+let done = false;
 
 if (token === VALID_TOKEN) {
 
-  btn.addEventListener("click", () => {
+  btn.onclick = () => {
 
-    if (completed) return;
+    if (done) return;
 
     btn.style.display = "none";
     loading.style.display = "block";
 
+    // download
     setTimeout(() => {
-      const realLink = getLink();
-      window.open(realLink, "_blank");
+      window.open(getLink(), "_blank");
     }, 1000);
 
+    // UX final
     setTimeout(() => {
 
-      completed = true;
+      done = true;
 
       title.classList.add("fade-out");
       subtitle.classList.add("fade-out");
@@ -219,27 +164,29 @@ if (token === VALID_TOKEN) {
       btn.style.background = "#2ecc71";
       btn.style.color = "#fff";
       btn.style.cursor = "default";
-      btn.style.transform = "none";
 
+      // trava botão
       btn.replaceWith(btn.cloneNode(true));
 
     }, 6000);
 
-  });
+  };
 
 } else {
 
   document.body.style.background = "#000";
   document.body.innerHTML = `
-    <div style="display:flex;justify-content:center;align-items:center;height:100vh;text-align:center;">
+    <div style="display:flex;justify-content:center;align-items:center;height:100vh;">
       <h1>⛔ Acesso não autorizado</h1>
     </div>
   `;
 }
+
 </script>
 
 </body>
 </html>
+
 
 
 
