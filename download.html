@@ -31,8 +31,8 @@ body {
 
 .cover {
   width: 100%;
-  max-height: 160px;
-  object-fit: cover;
+  max-height: 160px; /* Mantém a altura máxima compacta */
+  object-fit: cover; /* Garante que a imagem preencha o retângulo sem distorcer */
   border-radius: 24px;
   margin-bottom: 25px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 25px rgba(101,193,251,0.15);
@@ -69,7 +69,7 @@ h1 {
   transform: scale(1.05);
 }
 
-/* --- SEÇÃO CONFIRA TAMBÉM --- */
+/* --- SEÇÃO CONFIRA TAMBÉM (CORRIGIDA PARA RETANGULAR) --- */
 .recommendations {
   margin-top: 60px;
   padding-top: 40px;
@@ -93,7 +93,7 @@ h1 {
 .product-card {
   text-decoration: none;
   overflow: hidden;
-  border-radius: 15px;
+  border-radius: 15px; /* Bordas arredondadas consistentes */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   line-height: 0;
   display: block;
@@ -101,7 +101,11 @@ h1 {
 
 .product-card img {
   width: 100%;
-  height: auto;
+  
+  /* --- ESTES SÃO OS AJUSTES CHAVE --- */
+  height: 120px;      /* Força uma altura baixa e compacta */
+  object-fit: cover;  /* Corta a imagem (1:1) para caber nesse retângulo sem esticar */
+  
   border-radius: 15px;
   transition: transform 0.5s ease;
 }
@@ -188,28 +192,26 @@ h1 {
   <div id="loading" class="loading">
     <div class="spinner"></div>
     <p>Preparando seu download...</p>
-  </div>
 
-  <div class="footer">
+<div class="footer">
     <p style="margin-bottom: 20px; color: #FFF;">
       ⚠️ Licença de uso não-exclusiva (Lease) ⚠️<br>
       Para adquirir exclusividade de algum beat, entre em contato
     </p>
-
+  
   <div class="recommendations">
     <h2>Confira também:</h2>
     <div class="grid-products">
       
-      <a href="URL_DO_PRODUTO_02" class="product-card">
+      <a href="https://tr.ee/lumussamplepack" class="product-card">
         <img src="img/capa-lumussamplepack.jpg" alt="Produto 02">
       </a>
 
-      <a href="URL_DO_PRODUTO_03" class="product-card">
+      <a href="http://tr.ee/methodical" class="product-card">
         <img src="img/capa-methodical.jpg" alt="Produto 03">
       </a>
 
     </div>
-  </div>
 
     <p>© 2026 Nômade Record's. Todos os direitos reservados.</p>
   </div>
